@@ -1,0 +1,361 @@
+*{
+	
+}
+body
+{
+	background-color: #00080d;
+	margin: 0px;
+	font-family: 'Balsamiq Sans', cursive;
+font-family: 'Muli', sans-serif;
+	color: white;
+	overflow-x: hidden;
+}
+.outermost-nav
+{
+	display: flex;
+	background-color: black;
+}
+.outermost-nav h1
+{
+	margin: 0rem;
+}
+.middle-nav
+{
+	margin-top: 1rem;
+	height: 3rem;
+	width: 100%;
+	box-sizing: border-box;
+	display: flex;
+}
+.boot-nav-main
+{
+	width: 100%;
+	padding: 0px;
+}
+.brand-con
+{
+	box-sizing: border-box;
+	padding: 0px;
+	margin: auto;
+	border-top-left-radius: 1rem;
+	border-top-right-radius: 1rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	margin-left: 2%;
+	margin-bottom: 0px;
+	font-size: 2rem;
+	color: white;
+}
+.body-container
+{
+	margin: 0px;
+	width: 100%;
+	height: 60rem;
+	display: flex;
+	overflow-x: hidden;
+}
+.innerbody-container
+{
+	margin: 0.25rem;
+	height: 99%;
+	width: 100%;
+	margin-bottom: 0px;
+	box-sizing: border-box;
+	flex-wrap: wrap;
+	overflow-x: hidden;
+}
+.flyerbody
+{
+	width: 100%;
+	height: 25rem;
+	display: flex;
+}
+.flyerbody img
+{
+	height: 25rem;
+	width: 100%;
+	object-fit: cover;
+}
+.content-holder
+{
+	width: 100%;
+	height: 15rem;
+}
+.catagory-row
+{
+	width: 100%;
+	height: 15rem;
+	display: flex;
+	margin-top: 2rem;
+}
+.catagory-row:nth-of-type(1)
+{
+	margin-top: 1rem;
+}
+.catagory-text-container
+{
+	width: 20%;
+	height: 100%;
+	display: flex;
+}
+.catagory-text-container h4
+{
+	margin: auto;
+	margin-left: 2%;
+}
+.content-img-holder
+{
+	width: 80%;
+	height: 16rem;
+	flex-wrap: wrap;
+	 overflow-x: scroll;
+    overflow-y: hidden;
+    white-space:nowrap;
+}
+.content-img
+{
+	margin: auto;
+	
+}
+.btn-actions
+{
+	color: white;
+	border-color: white;
+}
+.flayer-caption
+{
+	position: relative;
+  	top: -7rem;
+	font-size: 3rem;
+	margin-left: 20px;
+	height: 0px;
+}
+#category-form input
+{
+	margin-top: 1.5rem;
+	display: block;
+	width: 100%;
+}
+#category-form textarea
+{
+	margin-top: 1.5rem;
+	display: block;
+	width: 100%;
+}
+#category-form button
+{
+	margin-top: 1.5rem;
+	display: block;
+	width: 100%;
+}
+.navbar-toggler-icon
+{
+	color: white;
+}
+#show-content-image-holder
+{
+	width: 100%;
+}
+.catagory-text-container a
+{
+	width: 100%;
+	color: white;
+	height: auto;
+	margin: auto;
+}
+.catagory-text-container a:hover
+{
+	color: white;
+	text-decoration: none;
+}
+.addNewFilm-button
+{
+	height: 90%;
+	position: relative;
+	width: 20rem;
+	top: -10px;
+}
+.addNewFilm-button p
+{
+	margin-top: 30%;
+}
+#show-film
+{
+	display: flex;
+	overflow: auto;
+}
+
+#show-film iframe
+{
+	width: 100%;
+	height: 25rem;
+	margin: auto;
+}
+.edit-delete-form
+{
+	display: inline;
+	position: relative;
+	z-index: 2;
+	top: -115px;
+	width: 0px;
+}
+.category-show-link
+{
+	position: relative;
+	z-index: 0;
+	left: -3px !important;
+}
+.edit-delete-form button
+{
+	width: 0px;
+	padding: 0px;
+	border: 0px;
+	color: white;
+	left: 300px;
+}
+.edit-delete-form button i
+{
+	size: 1rem;
+	position: relative;
+	left: 6px;
+}
+.edit-delete-form button i:hover
+{
+	color: green;
+}
+#delete-form
+{
+	display: flex;
+	width: 10%;
+}
+#delete-form button
+{
+	height: 100%;
+	width: 90%;
+	margin-left: auto;
+}
+.edit-title h1
+{
+	display: inline-block;
+	width: 90%;
+}
+.edit-title
+{
+	display: flex;
+	margin: 0px;
+}
+.card-body h5
+{
+	color: black;
+}
+.card-body p
+{
+	color: black;
+}
+#add-exzisting-film-button
+{
+	color: black;
+	border: 1px solid black;
+	width: 100% !important;
+}
+.delete-form-2
+{
+	width: 100%;
+}
+#edit-delete-form-2
+{
+	left: 2.5rem;
+    top: 9rem;
+}
+#edit-delete-form-3
+{
+	left: 4rem;
+    top: 9rem;
+}
+#alone-film-addnew
+{
+	margin-left: auto;
+	margin-right: auto !important;
+	margin-top: .5rem !important;
+	margin-bottom: .5rem !important;
+	color: black;
+	height: 8rem;
+	border: 1px solid black;
+	line-height: 7.5rem;
+	width: 90%;
+}
+#alone-film-addnew-holder
+{
+	height: 100%;
+	display: flex;
+	vertical-align: middle
+}
+.show-film-wCategory
+{
+	width: 100%;
+}
+.a2-film-ele
+{
+	flex-wrap: nowrap;
+}
+.a2-col-content
+{
+	height: 12rem;
+	white-space: nowrap;
+	overflow-x: auto;
+	overflow-y: hidden;
+	padding: 0px;
+}
+.a2-row
+{
+	overflow-x: hidden;
+}
+.image-thumbnail
+{
+	width: auto;
+	height: 12rem;
+	object-fit: cover;
+	margin: auto;
+	margin-right: 5px;
+	margin-bottom: 1rem;
+}
+.a2-cat-name
+{
+	margin-top: auto;
+	margin-bottom: auto;
+}
+.normalize-atag
+{
+	color: white;
+	text-decoration: none;
+}
+.normalize-atag:hover
+{
+	color: white;
+	text-decoration: none;
+}
+.a2-edit-cat
+{
+	font-size: 1rem;
+	height: 2rem;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+.a2-catname-h4
+{
+	font-size: 1rem;
+}
+.brand-icon-text
+{
+	font-size: 1.5rem;
+}
+#edit-btn-fix
+{
+	width: 4rem !important;
+	position: relative;
+	left: -2rem;
+}
+#nav-fix
+{
+	margin-top: 1rem !important;
+}

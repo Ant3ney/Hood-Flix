@@ -1,0 +1,63 @@
+<%- include("partials/header") -%>
+		<a href="#" class="flyerbody">
+			<img src="https://i.ytimg.com/vi/pynUKPa7vj0/maxresdefault.jpg">
+		</a>
+		<h3 class="mb-2 flayer-caption">
+			Production Crew
+		</h3>
+		<div class="content-holder">
+			
+			
+			
+			
+			<!-- Attempt02 -->
+			<% categorys.forEach(function(cetagory){%>
+			<div class="a2-row row mt-3 mb-5">
+				<div class="col-lg-2 d-flex mb-2">
+					<a class="ml-1 my-auto normalize-atag mr-2" href="/all/<%= cetagory._id %>">
+						<h4 class="a2-cat-name d-inline a2-catname-h4">
+							<%= cetagory.name %>
+						</h4>
+					</a>
+					<a href="/all/<%= cetagory._id %>/edit" class="a2-edit-cat d-block btn-actions btn btn-outline-success">
+						<i class="fas fa-hammer"></i>
+					</a>
+				</div>
+				<div class="a2-col-content col-lg-10">
+					<% cetagory.films.forEach(function(film){ %>
+					<a href="all/<%= cetagory._id %>/film/<%= film._id %>"><img src="<%= film.url %>" class="a2-film-ele image-thumbnail img-fluid mw-50" alt="Responsive image"></a>
+					<% }); %>
+				</div>
+			</div>
+			<% }); %>
+			
+			
+			
+			
+			
+			
+			
+			<% categorys.forEach(function(cetagory){%>
+			<div class="catagory-row">
+				<div class="catagory-text-container">
+					<form action="/all/<%= cetagory._id %>/edit" method="GET">
+						<button class="btn-actions btn btn-outline-success">
+							<i class="fas fa-hammer"></i>
+						</button>
+					</form>
+					<a href="/all/<%= cetagory._id %>">
+					<h4 class="">
+						<%= cetagory.name %>
+					</h4>
+					</a>
+				</div>
+				<div class="content-img-holder">
+					<% cetagory.films.forEach(function(film){ %>
+					<a href="all/<%= cetagory._id %>/film/<%= film._id %>"><img src="<%= film.url %>" class="image-thumbnail img-fluid" alt="Responsive image"></a>
+					<% }); %>
+				</div>
+			</div>
+			<% }); %>
+			
+		</div>
+<%- include("partials/footer") -%>

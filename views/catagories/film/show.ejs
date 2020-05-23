@@ -1,0 +1,65 @@
+<%- include("../../partials/header") -%>
+<div class="container">
+<p class="display-4">
+		
+</p>
+	
+<div id="show-film" class="">
+	<iframe width="560" height="315" src="<%= film.embed %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+	<p class="display-4">
+		<%= film.title %>
+	</p>
+	<div class="row">
+		<div class="col-sm-3">
+			<p>
+				Credits 
+			</p>
+			<p>
+				Director: <%= film.credits.director %>
+			</p>
+			<p>
+				Cinematography: <%=  film.credits.cinematography %>
+			</p>
+			<p>
+				Editor: <%= film.credits.editor %>
+			</p>
+			<p>
+				Writer: <%= film.credits.writer %>
+			</p>
+		</div>
+		<div class="col-sm-6">
+			<p>
+				Description
+			</p>
+			<p>
+				<%= film.description %>
+			</p>
+		</div>
+		<div class="col-sm-3">
+			<p>
+				Comments
+			</p>
+			<p>
+				<strong>Angel-Man</strong>: Hey look thats me!
+			</p>
+			<p>
+				<strong>Alex</strong>: We already know jackAss!
+			</p>
+		</div>
+	</div>
+	<p class="display-4">
+		Continue <%= cetagory.name %>
+	</p>
+	<div class="show-film-wCategory content-img-holder">
+					<% cetagory.films.forEach(function(film){ %>
+					<a href="all/<%= cetagory._id %>/film/<%= film._id %>"><img src="<%= film.url %>" class="image-thumbnail img-fluid" alt="Responsive image"></a>
+					<% }); %>
+				</div>
+	
+</div>
+<script>
+	//var descriptionSeeMore = document.getElementById();
+</script>
+<%- include("../../partials/footer") -%>

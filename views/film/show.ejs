@@ -1,0 +1,62 @@
+<%- include("../partials/header") -%>
+<div class="container">
+<p class="display-4">
+		
+</p>
+	
+<div id="show-film" class="">
+	<iframe width="560" height="315" src="<%= film.embed %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+	<p class="display-4">
+		<%= film.title %>
+	</p>
+	<div class="row">
+		<div class="col-3">
+			<p>
+				Credits 
+			</p>
+			<p>
+				Director: <%= film.credits.director %>
+			</p>
+			<p>
+				Cinematography: <%=  film.credits.cinematography %>
+			</p>
+			<p>
+				Editor: <%= film.credits.editor %>
+			</p>
+			<p>
+				Writer: <%= film.credits.writer %>
+			</p>
+		</div>
+		<div class="col-6">
+			<p>
+				Description
+			</p>
+			<p>
+				<%= film.description %>
+			</p>
+		</div>
+		<div class="col-3">
+			<p>
+				Comments
+			</p>
+			<p>
+				<strong>Angel-Man</strong>: Hey look thats me!
+			</p>
+			<p>
+				<strong>Alex</strong>: We already know jackAss!
+			</p>
+		</div>
+	</div>
+	<p class="display-4">
+		Suggested
+	</p>
+	<div id="show-content-image-holder" class="content-img-holder">
+					<a href="#"><img src="https://i.ytimg.com/vi/RyknCassEH0/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBH_erYRkhd3RAmg6S0CROqZ6ZvnA" class="image-thumbnail img-fluid" alt="Responsive image"></a>
+					<img src="https://i.ytimg.com/vi/pynUKPa7vj0/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB5oqQtQCil0iEOV9Godm6RucX4eQ" class="image-thumbnail img-fluid" alt="Responsive image">
+					<img src="https://i.ytimg.com/vi/-QD3hwmoskQ/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLC3fpKHWDwwxQkpsVSw6N9P7GLMwQ" class="image-thumbnail img-fluid" alt="Responsive image">
+					<img src="https://i.ytimg.com/vi/DsrIjVSI0fk/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCgJ_HnXTZNyBAs66nFCx21Ph2sfw" class="image-thumbnail img-fluid" alt="Responsive image">
+				</div>
+</div>
+<%- include("../partials/footer") -%>

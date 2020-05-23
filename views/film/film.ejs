@@ -1,0 +1,44 @@
+<%- include("../partials/header") -%>
+<div class="container">
+	<h1>
+		All films
+	</h1>
+	<div class="row">
+		<% films.forEach(function(film){%>	
+		<div class="col-md-4 mt-2 col-sm-6">
+			<form class="edit-delete-form" action="/film/<%= film._id %>/edit">
+				<button class="btn btn-outline-success">
+					<i id="edit-delete-form-2" class="fas fa-hammer"></i>
+				</button>
+			</form>	
+			<form class="edit-delete-form" action="/film/<%= film._id %>?_method=DELETE" method="POST">
+				<button class="btn btn-outline-success">
+					<i id="edit-delete-form-3" class="fas fa-trash"></i>
+				</button>
+			</form>	
+			<div class="card mx-auto" style="width: 18rem;">
+			  <img src="<%= film.url %>" class="card-img-top" alt="...">
+			  <div class="card-body">
+				<h5 class="card-title"><%= film.title %></h5>
+				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				  <form id="delete-form-2 delete-form" action="/film/<%= film._id %>" method="GET">
+					<button id="add-exzisting-film-button" class="btn-actions btn btn-outline-success">
+						Watch
+					</button>
+				</form>
+			  </div>
+			</div>
+		</div>
+		<% }); %>
+		
+		<div class="col-md-4 mt-2 col-sm-6">
+			<div id="alone-film-addnew-holder" class="card mx-auto" style="width: 18rem;">
+			  	<a id="alone-film-addnew" href="/film/new" class="btn-actions btn btn-outline-success my-2 my-sm-0 mr-2">
+					Add new film
+				</a>
+			</div>
+		</div
+			
+	</div>
+</div>
+<%- include("../partials/footer") -%>

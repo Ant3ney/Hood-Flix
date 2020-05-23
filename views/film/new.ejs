@@ -1,0 +1,29 @@
+<%- include("../partials/header") -%>
+<div class="container mb-2">
+	<h1>
+		Add new film
+	</h1>
+	<form id="category-form" action="/film" method="POST">
+		<h4>
+			Film Presentation
+		</h4>
+		<input type="text" name="title" placeholder="film name">
+		<input type="text" name="url" placeholder="immage-url">
+		<textarea form="category-form" name="description" placeholder="film description" cols="50"></textarea> 
+		<input type="text" name="embed" placeholder="embed">
+		<h4>
+			Credits
+		</h4>
+		<input type="text" name="director" placeholder="director">
+		<input type="text" name="cinematography" placeholder="cinematography">
+		<input type="text" name="editor" placeholder="editor">
+		<input type="text" name="writer" placeholder="writer">
+		<input type="text" name="staring" placeholder="staring">
+		<input type="text" name="guestStarring" placeholder="guestStarring">
+		
+		<button>
+			Submit
+		</button>
+	</form>
+</div>
+<%- include("../partials/footer") -%>

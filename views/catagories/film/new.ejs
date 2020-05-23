@@ -1,0 +1,92 @@
+<%- include("../../partials/header") -%>
+<div class="container">
+	<h1>
+		Add new film
+	</h1>
+	<form id="category-form" action="/all/<%= category_id %>/film" method="POST">
+		<h4>
+			Film Presentation
+		</h4>
+		<input type="text" name="title" placeholder="film name">
+		<input type="text" name="url" placeholder="immage-url">
+		<textarea form="category-form" name="description" placeholder="film description" cols="50"></textarea> 
+		<input type="text" name="embed" placeholder="embed">
+		<h4>
+			Credits
+		</h4>
+		<input type="text" name="director" placeholder="director">
+		<input type="text" name="cinematography" placeholder="cinematography">
+		<input type="text" name="editor" placeholder="editor">
+		<input type="text" name="writer" placeholder="writer">
+		<input type="text" name="staring" placeholder="staring">
+		<input type="text" name="guestStarring" placeholder="guestStarring">
+		<button>
+			Submit
+		</button>
+	</form>
+	<h1>
+		Or add exzisting film
+	</h1>
+	<div class="row">
+		<% films.forEach(function(film){%>	
+		<div class="col-md-4 mt-2">
+			<form class="edit-delete-form" action="/all/<%= category_id %>/film/<%= film._id %>/edit">
+				<button class="btn btn-outline-success">
+					<i id="edit-delete-form-2" class="fas fa-hammer"></i>
+				</button>
+			</form>	
+			<form class="edit-delete-form" action="/all/<%= category_id %>/film/<%= film._id %>?_method=DELETE" method="POST">
+				<button class="btn btn-outline-success">
+					<i id="edit-delete-form-3" class="fas fa-trash"></i>
+				</button>
+			</form>	
+			<div class="card mx-auto" style="width: 18rem;">
+			  <img src="<%= film.url %>" class="card-img-top" alt="...">
+			  <div class="card-body">
+				<h5 class="card-title"><%= film.title %></h5>
+				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				<form id="delete-form-2 delete-form" action="/all/<%= category_id %>/exzistingFilm/<%= film._id %>" method="POST">
+					<button id="add-exzisting-film-button" class="btn-actions btn btn-outline-success">
+						Add film
+					</button>
+				</form>
+			  </div>
+			</div>
+		</div>
+		<% }); %>
+		
+		<div class="col-md-4 mt-2">
+			<div class="card mx-auto" style="width: 18rem;">
+			  <img src="..." class="card-img-top" alt="...">
+			  <div class="card-body">
+				<h5 class="card-title">Card title</h5>
+				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				<a href="#" class="btn btn-primary">Go somewhere</a>
+			  </div>
+			</div>
+		</div>
+		
+		<div class="col-md-4 mt-2">
+			<div class="card mx-auto" style="width: 18rem;">
+			  <img src="..." class="card-img-top" alt="...">
+			  <div class="card-body">
+				<h5 class="card-title">Card title</h5>
+				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				<a href="#" class="btn btn-primary">Go somewhere</a>
+			  </div>
+			</div>
+		</div>
+		
+		<div class="col-md-4 mt-2">
+			<div class="card mx-auto" style="width: 18rem;">
+			  <img src="..." class="card-img-top" alt="...">
+			  <div class="card-body">
+				<h5 class="card-title">Card title</h5>
+				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				<a href="#" class="btn btn-primary">Go somewhere</a>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+<%- include("../../partials/footer") -%>

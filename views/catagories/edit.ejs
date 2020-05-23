@@ -1,0 +1,26 @@
+<%- include("../partials/header") -%>
+<div class="container">
+	<div class="edit-title fluid-container mt-2">
+		<h1>
+			Edit <%= category.title %>
+		</h1>
+		<form class="ml-auto mr-1" action="/all/<%= category._id %>?_method=DELETE" method="POST">
+			<button class="btn-actions btn btn-outline-success">
+				Feature
+			</button>
+		</form>
+		<form class="ml-auto" action="/all/<%= category._id %>?_method=DELETE" method="POST">
+			<button class="btn-actions btn btn-outline-success">
+				Delete
+			</button>
+		</form>
+	</div>
+	<form id="category-form" action="/all/<%= category._id %>/film/<%= category._id %>?_method=PUT" method="POST">
+		<input type="text" name="title" placeholder="category name" value="<%= category.name %>">
+		<textarea form="category-form" name="description" placeholder="film description" cols="50"><%= category.description %></textarea> 
+		<button>
+			Submit
+		</button>
+	</form>
+</div>
+<%- include("../partials/footer") -%>

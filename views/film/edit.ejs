@@ -1,0 +1,36 @@
+<%- include("../partials/header") -%> <!-- /film/edit -->
+<div class="container">
+	<div class="edit-title fluid-container mt-2">
+		<h1>
+			Edit <%= film.title %>
+		</h1>
+		<form id="delete-form" action="/film/<%= film._id %>?_method=DELETE" method="POST">
+			<button class="btn-actions btn btn-outline-success">
+				Delete
+			</button>
+		</form>
+	</div>
+	<form id="category-form" class="mb-2" action="/film/<%= film._id %>?_method=PUT" method="POST">
+		<h4>
+			Film Presentation
+		</h4>
+		<input type="text" name="title" placeholder="film name" value="<%= film.title %>">
+		<input type="text" name="url" placeholder="immage-url" value="<%= film.url %>">
+		<textarea form="category-form" name="description" placeholder="film description" cols="50"><%= film.description %>			</textarea> 
+		<input type="text" name="embed" placeholder="embed" value="<%= film.embed %>">
+		<h4>
+			Credits
+		</h4>
+		<input type="text" name="director" placeholder="director" value="<%= film.credits.director %>">
+		<input type="text" name="cinematography" placeholder="cinematography" value="<%= film.credits.cinematography %>">
+		<input type="text" name="editor" placeholder="editor" value="<%= film.credits.editor %>">
+		<input type="text" name="writer" placeholder="writer" value="<%= film.credits.writer %>">
+		<input type="text" name="staring" placeholder="staring" value="<%= film.credits.staring %>">
+		<input type="text" name="guestStarring" placeholder="guestStarring" value="<%= film.credits.guestStarring %>">
+		
+		<button>
+			Submit
+		</button>
+	</form>
+</div>
+<%- include("../partials/footer") -%>
