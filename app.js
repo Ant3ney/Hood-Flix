@@ -6,7 +6,7 @@ var methodOveride = require("method-override");
 var expressSanitizer = require("express-sanitizer");
 //mongodb+srv://Anthony2361:<password>@cluster0-j2fws.mongodb.net/test?retryWrites=true&w=majority
 //mongodb://localhost:27017/AllMovies
-mongoose.connect('mongodb+srv://Anthony2361:<password>@cluster0-j2fws.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});
+mongoose.connect('mongodb+srv://Anthony2361:Anthony3671@cluster0-j2fws.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
