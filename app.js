@@ -4,8 +4,9 @@ var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var methodOveride = require("method-override");
 var expressSanitizer = require("express-sanitizer");
-
-mongoose.connect('mongodb://localhost:27017/AllMovies', {useNewUrlParser: true});
+//mongodb+srv://Anthony2361:<password>@cluster0-j2fws.mongodb.net/test?retryWrites=true&w=majority
+//mongodb://localhost:27017/AllMovies
+mongoose.connect('mongodb+srv://Anthony2361:<password>@cluster0-j2fws.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
