@@ -614,9 +614,5 @@ app.get("/film/ran", function(req, res)
 app.listen(process.env.PORT, process.env.IP, function()
 {
 	var port = process.env.PORT || 3000;
-	app.listen(port, function () 
-	{
-		console.log("server has started");
-	});
-
+	console.log("server has started");
 });
