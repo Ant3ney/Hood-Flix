@@ -607,7 +607,7 @@ app.get("/film/ran", function(req, res)
 	res.send("in standalone add new film page");
 });
 
-app.listen(3000, function()
+app.listen(porcess.env.PORT, process.env.IP, function()
 {
 	console.log("Server has started");
 });
