@@ -45,6 +45,8 @@ var categorySchema = new mongoose.Schema(
 {
 	name: String,
 	description: String,
+	featured: String,
+	featureUrl: String,
 	films: 
 	[
 		{
@@ -71,13 +73,22 @@ app.get("/all", function(req, res)
 {
 	Category.find({}).populate("films").exec(function(err, foundCategory)
 	{
+		var featuredCategory;
+		foundCategory.forEach(function(category)
+		{
+			if(category.featured == "true")
+			{
+				featuredCategory = category;
+			}
+		});
+		//console.log("featuredUrl: " + featuredUrl);
 		if(err)
 		{
 			console.log(err);
 		}
 		else
 		{
-			res.render("AllMovies", {categorys: foundCategory});
+			res.render("AllMovies", {categorys: foundCategory, featuredCategory: featuredCategory});
 		}
 	});
 });
@@ -107,10 +118,13 @@ app.post("/all", function(req, res)
 		}
 	});
 });
+//show categorys
 app.get("/all/:id", function(req, res)
 {
 	var id = req.params.id;
-	console.log("This far id:" + req.params.id);
+	
+	
+	//console.log("This far id: and update02" + req.params.id);
 	Category.findById(id).populate("films").exec(function(err, foundCategory)
 	{
 		if(err)
@@ -119,7 +133,20 @@ app.get("/all/:id", function(req, res)
 		}
 		else
 		{
-			res.render("catagories/show", {category: foundCategory});
+			Category.find({}).populate("films").exec(function(err, allCategorys)
+			{
+			// set featuredCategory to the category model found in data base that has the obj key "feature" set to "true"
+			var featuredCategory;
+			allCategorys.forEach(function(category)
+			{
+				if(category.featured == "true")
+				{
+					featuredCategory = category;
+				}
+			});
+			//get featured function. In future. find out how to create a custum function that calls returns a callback.
+			res.render("catagories/show", {category: foundCategory, feature: featuredCategory});
+			});
 		}
 	});
 });
@@ -238,6 +265,82 @@ app.get("/all/:id/film/:filmid/edit", function(req, res)
 		}
 	});
 });
+//update category
+app.put("/all/:id", function(req,res)
+{
+	console.log("Featured value: " + req.body.featured);
+	//if featured == true then get all categorys and set set featured to false
+	var featured = (req.body.featured == "true");
+	var featuredString = "false";
+	if(featured)
+	{
+		featuredString = "true";
+	}
+	else
+	{
+		featuredString = "false";
+	}
+	console.log("Featured value: " + featured);
+	
+		//console.log("-------------here");
+		Category.find({}).populate("films").exec(function(err, categorys)
+		{
+			if(featured)
+			{
+				categorys.forEach(function(category)
+				{
+					category.featured = "false";
+					category.save();
+				});
+			}
+			//get category id from params
+			var id = req.params.id;
+			Category.findById(id).populate("films").exec(function(err, foundCategory)
+			{
+				if(err)
+				{
+					console.log(err);
+				}
+				//construct new category model using reqbody
+				var updatedCategory = 
+				{
+					name: req.body.title,
+					description: req.body.description,
+					featured: featuredString,
+					featureUrl: req.body.featuredUrl,
+					films: foundCategory.films
+				}
+				console.log("Category name: " + updatedCategory.name);
+				console.log("Category description: " + updatedCategory.description);
+				console.log("Category featured: " + updatedCategory.featured);
+				console.log("Category featureUrl: " + updatedCategory.featureUrl);/*
+				console.log("Category name: " + updatedCategory.films);*/
+				
+				//get category by id and update using new category object
+				//redirect to all
+				Category.findByIdAndUpdate(id, updatedCategory, function(err, upCat)
+				{
+					if(err)
+					{
+						console.log(err);
+					}
+					else
+					{
+						//console.log(upCat.title + " was updated");
+						res.redirect("/all");
+					}
+				});
+				
+			});
+		});
+	
+	
+	
+	
+	
+	
+	
+});
 //film update route
 app.put("/all/:id/film/:filmid", function(req,res)
 {
@@ -335,7 +438,12 @@ app.get("/all/:id/edit", function(req, res)
 		}
 		else
 		{
-			res.render("catagories/edit", {category: foundCategory});
+			var featured = false;
+			if(foundCategory.featured == "true")
+			{
+				var featured = true;
+			}
+			res.render("catagories/edit", {category: foundCategory, featured: featured});
 		}
 	});
 });

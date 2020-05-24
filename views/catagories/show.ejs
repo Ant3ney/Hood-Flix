@@ -63,14 +63,21 @@
 		</div>
 	</div>
 	<p class="display-4">
-		Suggested
+		Suggested category "<%= feature.name %>"
 	</p>
 	<div id="show-content-image-holder" class="content-img-holder">
-					<a href="#"><img src="https://i.ytimg.com/vi/RyknCassEH0/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBH_erYRkhd3RAmg6S0CROqZ6ZvnA" class="image-thumbnail img-fluid" alt="Responsive image"></a>
-					<img src="https://i.ytimg.com/vi/pynUKPa7vj0/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB5oqQtQCil0iEOV9Godm6RucX4eQ" class="image-thumbnail img-fluid" alt="Responsive image">
-					<img src="https://i.ytimg.com/vi/-QD3hwmoskQ/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLC3fpKHWDwwxQkpsVSw6N9P7GLMwQ" class="image-thumbnail img-fluid" alt="Responsive image">
-					<img src="https://i.ytimg.com/vi/DsrIjVSI0fk/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCgJ_HnXTZNyBAs66nFCx21Ph2sfw" class="image-thumbnail img-fluid" alt="Responsive image">
-				</div>
+	<% feature.films.forEach(function(film){ %>
+	<form class="edit-delete-form" action="/all/<%= category._id %>/film/<%= film._id %>/edit">
+			<button class="btn btn-outline-success">
+				<i class="fas fa-hammer"></i>
+			</button>
+	</form>				
+	<a class="category-show-link" href="/all/<%= category._id %>/film/<%= film._id %>">
+		
+		<img src="<%= film.url %>" class="image-thumbnail img-fluid" alt="Responsive image">
+	</a>
+	
+	<% }); %>
 </div>
 
 

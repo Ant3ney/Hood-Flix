@@ -106,7 +106,7 @@ font-family: 'Muli', sans-serif;
 .content-img-holder
 {
 	width: 80%;
-	height: 16rem;
+	height: 13.42rem;
 	flex-wrap: wrap;
 	 overflow-x: scroll;
     overflow-y: hidden;
@@ -300,7 +300,7 @@ font-family: 'Muli', sans-serif;
 }
 .a2-col-content
 {
-	height: 12rem;
+	height: 13.5rem;
 	white-space: nowrap;
 	overflow-x: auto;
 	overflow-y: hidden;
@@ -358,4 +358,12 @@ font-family: 'Muli', sans-serif;
 #nav-fix
 {
 	margin-top: 1rem !important;
+}
+.lab-fix-01
+{
+	width: auto;
+}
+#lab-fix-02
+{
+	width: auto !important;
 }
