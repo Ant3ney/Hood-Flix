@@ -1,10 +1,12 @@
 <%- include("partials/header") -%>
+<% if(featuredCategory){ %>
 		<a href="/all/<%= featuredCategory._id %>" class="flyerbody">
 			<img src="<%= featuredCategory.featureUrl %>">
 		</a>
 		<h3 class="mb-2 flayer-caption">
 			<%= featuredCategory.name %>
 		</h3>
+<% } %>
 		<div class="content-holder">
 			
 			

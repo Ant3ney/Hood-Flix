@@ -6,7 +6,7 @@ var methodOveride = require("method-override");
 var expressSanitizer = require("express-sanitizer");
 //mongodb+srv://Anthony2361:<password>@cluster0-j2fws.mongodb.net/test?retryWrites=true&w=majority
 //mongodb://localhost:27017/AllMovies
-mongoose.connect('mongodb+srv://Anthony2361:Anthony3671@cluster0-j2fws.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});
+mongoose.connect('mongodb+srv://Anthony2361:7*h!WUUebHAu3vz@cluster0-j2fws.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -75,11 +75,13 @@ app.get("/all", function(req, res)
 	Category.find({}).populate("films").exec(function(err, foundCategory)
 	{
 		var featuredCategory;
+		var foundFeatured = false;
 		foundCategory.forEach(function(category)
 		{
 			if(category.featured == "true")
 			{
 				featuredCategory = category;
+				foundFeatured = true;
 			}
 		});
 		//console.log("featuredUrl: " + featuredUrl);
@@ -608,7 +610,13 @@ app.get("/film/ran", function(req, res)
 	res.send("in standalone add new film page");
 });
 
+//process.env.PORT, process.env.IP
 app.listen(process.env.PORT, process.env.IP, function()
 {
-	console.log("Server has started");
+	var port = process.env.PORT || 3000;
+	app.listen(port, function () 
+	{
+		console.log("server has started");
+	});
+
 });
