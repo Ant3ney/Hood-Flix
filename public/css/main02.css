@@ -205,9 +205,7 @@ font-family: 'Muli', sans-serif;
 .addNewFilm-button
 {
 	height: 90%;
-	position: relative;
 	width: 20rem;
-	top: -.4rem;
 }
 .addNewFilm-button p
 {
@@ -412,4 +410,9 @@ font-family: 'Muli', sans-serif;
 .addnew-btn-catshow
 {
 	height: 11.5rem;
+}
+.adjustable-position
+{
+	position: relative;
+	top: -.4rem;
 }

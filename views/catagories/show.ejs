@@ -17,7 +17,11 @@
 	</a>
 	
 	<% }); %>
-	<a class="addnew-btn-catshow addNewFilm-button image-thumbnail img-fluid btn-actions btn btn-outline-success my-2 my-sm-0 mr-2" href="/all/<%= category._id %>/film/new">
+	<a class="
+			  <% if(category.films.length > 0){ %>
+					adjustable-position
+				  <% } %>
+			  addnew-btn-catshow addNewFilm-button image-thumbnail img-fluid btn-actions btn btn-outline-success my-2 my-sm-0 mr-2" href="/all/<%= category._id %>/film/new">
 		<p>
 			Add New
 		</p>
