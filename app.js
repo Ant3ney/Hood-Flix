@@ -23,9 +23,7 @@ app.use("/all/:id/film", categoryFilmRouts);
 app.use("/film", filmRouts);
 app.use(indexRouts);
 
-//process.env.PORT, process.env.IP
 app.listen((process.env.PORT || 3000), process.env.IP, function()
 {
-	var port = process.env.PORT || 3000;
 	console.log("server has started");
 });
