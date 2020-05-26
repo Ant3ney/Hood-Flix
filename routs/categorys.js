@@ -1,12 +1,9 @@
+//Category Route
 var express = require("express");
 var router = express.Router();
 var Category = require("../models/category");
 
-router.get("/testroute", function(req, res)
-{
-	res.send("This is the testroute route");
-});
-
+//show all categorys (render allMovies.ejs)
 router.get("/", function(req, res)
 {
 	Category.find({}).populate("films").exec(function(err, foundCategory)
@@ -33,11 +30,13 @@ router.get("/", function(req, res)
 	});
 });
 
-//make new category
+//get new category page
 router.get("/new", function(req, res)
 {
 	res.render("catagories/new")
 });
+
+//post new category
 router.post("/", function(req, res)
 {
 	//if featured == true then get all categorys and set set featured to false
@@ -51,6 +50,7 @@ router.post("/", function(req, res)
 	{
 		featuredString = "false";
 	}
+	
 	var category =
 	{
 		name: req.body.name,
@@ -58,27 +58,25 @@ router.post("/", function(req, res)
 		featured: featuredString,
 		featureUrl: req.body.featuredUrl
 	};
+	
 	Category.create(category, function(err, createdCategory)
 	{
-		console.log("Gotten here now");
 		if(err)
 		{
 			console.log(err);
 		}
 		else
 		{
-			console.log(createdCategory.name + " was created");
 			res.redirect("/all");
 		}
 	});
 });
+
 //show categorys
 router.get("/:id", function(req, res)
 {
 	var id = req.params.id;
-	
-	
-	//console.log("This far id: and update02" + req.params.id);
+
 	Category.findById(id).populate("films").exec(function(err, foundCategory)
 	{
 		if(err)
@@ -120,9 +118,6 @@ router.put("/:id", function(req,res)
 	{
 		featuredString = "false";
 	}
-	console.log("Featured value: " + featured);
-	
-		//console.log("-------------here");
 		Category.find({}).populate("films").exec(function(err, categorys)
 		{
 			if(featured)
@@ -150,14 +145,7 @@ router.put("/:id", function(req,res)
 					featureUrl: req.body.featuredUrl,
 					films: foundCategory.films
 				}
-				console.log("Category name: " + updatedCategory.name);
-				console.log("Category description: " + updatedCategory.description);
-				console.log("Category featured: " + updatedCategory.featured);
-				console.log("Category featureUrl: " + updatedCategory.featureUrl);/*
-				console.log("Category name: " + updatedCategory.films);*/
-				
 				//get category by id and update using new category object
-				//redirect to all
 				Category.findByIdAndUpdate(id, updatedCategory, function(err, upCat)
 				{
 					if(err)
@@ -166,7 +154,7 @@ router.put("/:id", function(req,res)
 					}
 					else
 					{
-						//console.log(upCat.title + " was updated");
+						//redirect to all
 						res.redirect("/all");
 					}
 				});
@@ -174,6 +162,7 @@ router.put("/:id", function(req,res)
 			});
 		});
 });
+
 //edit catagory
 router.get("/:id/edit", function(req, res)
 {
@@ -195,13 +184,12 @@ router.get("/:id/edit", function(req, res)
 		}
 	});
 });
+
 //Delete category
 router.delete("/:id", function(req, res)
 {
-	//res.send("Delete page");
 	var id = req.params.id;
 	//find category by id
-	//delete category
 	Category.findByIdAndRemove(req.params.id, function(err, deleatedCategory)
 	{
 		console.log("id: " + id);

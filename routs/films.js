@@ -7,8 +7,19 @@ var Film = require("../models/film");
 //show films
 router.get("/", function(req, res)
 {
-	Film.find({}, function(err, foundFilms)
+	Film.find({}, function(err, foundFilmsOrgi)
 	{
+		//handle films description
+		var foundFilms = foundFilmsOrgi;
+		console.log("foundFilms: " + foundFilms);
+		foundFilms.forEach(function(film)
+		{
+			if(film.description && film.description.length > 90)
+			{
+				film.description = (film.description.substring(0, 90) + "...");
+			}
+		});
+		
 		res.render("film/film", {films: foundFilms});
 	});
 });

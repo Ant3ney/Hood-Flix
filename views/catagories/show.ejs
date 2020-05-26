@@ -6,7 +6,7 @@
 	
 <div id="show-content-image-holder" class="content-img-holder">
 	<% category.films.forEach(function(film){ %>
-	<form class="edit-delete-form" action="/all/<%= category._id %>/film/<%= film._id %>/edit">
+	<form class="edit-btn-fix edit-delete-form" action="/all/<%= category._id %>/film/<%= film._id %>/edit">
 			<button class="btn btn-outline-success">
 				<i class="fas fa-hammer"></i>
 			</button>
@@ -66,12 +66,14 @@
 			</p>
 		</div>
 	</div>
-	<p class="display-4">
-		Suggested category "<%= feature.name %>"
-	</p>
+	<a class="normalize-atag" href="/all/<%= feature._id %>">
+		<p class="display-4">
+			Suggested category "<%= feature.name %>"
+		</p>		
+	</a>
 	<div id="show-content-image-holder" class="content-img-holder">
 	<% feature.films.forEach(function(film){ %>
-	<form class="edit-delete-form" action="/all/<%= category._id %>/film/<%= film._id %>/edit">
+	<form class="edit-btn-fix edit-delete-form" action="/all/<%= category._id %>/film/<%= film._id %>/edit">
 			<button class="btn btn-outline-success">
 				<i class="fas fa-hammer"></i>
 			</button>
