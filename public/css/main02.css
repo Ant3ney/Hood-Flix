@@ -1,6 +1,40 @@
 *{
 	
 }
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+::-webkit-scrollbar-button {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #00003e;
+  border: 55px none #0000ff;
+  border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #004080;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #004080;
+}
+::-webkit-scrollbar-track {
+  background: #000017;
+  border: 0px none #ffffff;
+  border-radius: 100px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+::-webkit-scrollbar-track:active {
+  background: #666666;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 body
 {
 	background-color: #00080d;
@@ -173,11 +207,11 @@ font-family: 'Muli', sans-serif;
 	height: 90%;
 	position: relative;
 	width: 20rem;
-	top: -10px;
+	top: -.4rem;
 }
 .addNewFilm-button p
 {
-	margin-top: 30%;
+	margin-top: 100%;
 }
 #show-film
 {
@@ -337,9 +371,11 @@ font-family: 'Muli', sans-serif;
 .a2-edit-cat
 {
 	font-size: 1rem;
-	height: 2rem;
+	height: 1.5rem;
+	width: 1.5rem;
 	margin-top: auto;
 	margin-bottom: auto;
+	padding: 0rem;
 }
 .a2-catname-h4
 {
@@ -366,4 +402,14 @@ font-family: 'Muli', sans-serif;
 #lab-fix-02
 {
 	width: auto !important;
+}
+.hammer-fix
+{
+	position: relative;
+	top: -0.1rem;
+	font-size: 0.70rem;
+}
+.addnew-btn-catshow
+{
+	height: 11.5rem;
 }
