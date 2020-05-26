@@ -5,13 +5,7 @@ var bodyParser = require("body-parser");
 var methodOveride = require("method-override");
 var expressSanitizer = require("express-sanitizer");
 
-//mongodb+srv://Anthony2361:<password>@cluster0-j2fws.mongodb.net/test?retryWrites=true&w=majority
-//mongodb://localhost:27017/AllMovies
-mongoose.connect('mongodb+srv://Anthony2361:7*h!WUUebHAu3vz@cluster0-j2fws.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});
-
-//temporary model handling
-var Category = require("./models/category");
-var Film = require("./models/film");
+mongoose.connect(process.env.DATABASEURL , {useNewUrlParser: true});
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
