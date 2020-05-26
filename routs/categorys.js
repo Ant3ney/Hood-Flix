@@ -40,10 +40,23 @@ router.get("/new", function(req, res)
 });
 router.post("/", function(req, res)
 {
+	//if featured == true then get all categorys and set set featured to false
+	var featured = (req.body.featured == "true");
+	var featuredString = "false";
+	if(featured)
+	{
+		featuredString = "true";
+	}
+	else
+	{
+		featuredString = "false";
+	}
 	var category =
 	{
 		name: req.body.name,
-		description: req.body.description
+		description: req.body.description,
+		featured: featuredString,
+		featureUrl: req.body.featuredUrl
 	};
 	Category.create(category, function(err, createdCategory)
 	{
