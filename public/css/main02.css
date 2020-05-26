@@ -228,8 +228,8 @@ font-family: 'Muli', sans-serif;
 	display: inline;
 	position: relative;
 	z-index: 2;
-	top: -115px;
 	width: 0px;
+	height: 0px;
 }
 .category-show-link
 {
@@ -297,12 +297,10 @@ font-family: 'Muli', sans-serif;
 #edit-delete-form-2
 {
 	left: 2.5rem;
-    top: 9rem;
 }
 #edit-delete-form-3
 {
-	left: 4rem;
-    top: 9rem;
+	height: 0px;
 }
 #alone-film-addnew
 {
@@ -415,4 +413,8 @@ font-family: 'Muli', sans-serif;
 {
 	position: relative;
 	top: -.4rem;
+}
+.edit-delete-film-btn
+{
+	height: -0.1rem;
 }
