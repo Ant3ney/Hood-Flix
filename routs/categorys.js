@@ -6,6 +6,7 @@ var Category = require("../models/category");
 //show all categorys (render allMovies.ejs)
 router.get("/", function(req, res)
 {
+	console.log("currently loged in user: " + req.user);
 	Category.find({}).populate("films").exec(function(err, foundCategory)
 	{
 		var featuredCategory;

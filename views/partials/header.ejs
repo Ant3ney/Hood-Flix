@@ -25,18 +25,44 @@
 					<ul class="navbar-nav ml-auto m">
 					  
 					</ul>
-					<form class="form-inline my-2 my-lg-0 ml-2">
-						<a href="/all/new" class="btn-actions btn btn-outline-success my-2 my-sm-0 mr-2">
-						  Add Catagory
-						</a>
+					<span class="form-inline my-2 my-lg-0 ml-2">
 						<a href="/film" class="btn-actions btn btn-outline-success my-2 my-sm-0 mr-2">
 						  View Films
 						</a>
-					  <button class="btn-actions btn btn-outline-success my-2 my-sm-0 mr-2">
-						  Sign up
-						</button>
-					  <button class="btn-actions btn btn-outline-success my-2 my-sm-0 mr-2" type="submit">Login</button>
-					</form>
+						<% if(currentUser && (currentUser.admin == "true" || currentUser.admin == "owner")){ %>
+						<a href="/all/new" class="btn-actions btn btn-outline-success my-2 my-sm-0 mr-2">
+						  Add Catagory
+						</a>
+						<% if(currentUser && currentUser.admin == "owner") {%>
+						<form action="/users" method="GET">
+							<button class="btn-actions btn btn-outline-success my-2 my-sm-0 mr-2" type="submit">
+								 See users
+							</button>
+						</form>
+						<% } %>
+						<% } %>
+						<% if(!currentUser) { %>
+							<form action="/register" method="GET">
+								<button class="btn-actions btn btn-outline-success my-2 my-sm-0 mr-2">
+									Sign up
+								</button>
+							</form>
+							<form action="/login" method="GET">
+								<button class="btn-actions btn btn-outline-success my-2 my-sm-0 mr-2" type="submit">
+									 Login
+								</button>
+							</form>
+						<% } else { %>
+							<button class="btn-actions btn btn-outline-success my-2 my-sm-0 mr-2" type="submit">
+								Signed in as <%= currentUser.username %>
+							</button>
+							<form action="/logout" method="GET">
+								<button class="btn-actions btn btn-outline-success my-2 my-sm-0 mr-2" type="submit">
+									 Logout
+								</button>
+							</form>
+						<% } %>
+					</span>
 						
 				  </div>
 				</nav>

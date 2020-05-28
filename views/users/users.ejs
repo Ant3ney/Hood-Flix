@@ -1,0 +1,28 @@
+<%- include("../partials/header") -%>
+<div class="container">
+	<h1>
+		All Users
+	</h1>
+	<div class="row">
+		<% users.forEach(function(user){ %>	
+		<div class="col-lg-4 mt-2 col-md-6">
+			<div class="card mx-auto" style="width: 18rem;">
+			  <div class="card-body">
+				<h5 class="card-title"><%= user.username %></h5>
+				<p class="card-text"></p>
+				  <form id="delete-form-2 delete-form" action="/users/<%= user._id %>/makeAdmin" method="POST">
+					<button id="add-exzisting-film-button" class="btn-actions btn btn-outline-success">
+						<% if(user.admin == "true" || user.admin == "owner"){ %>
+							Make User
+						<% } else{ %>
+						Make Admin
+						<% } %>
+					</button>
+				</form>
+			  </div>
+			</div>
+		</div>
+		<% }); %>
+	</div>
+</div>
+<%- include("../partials/footer") -%>
