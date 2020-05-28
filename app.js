@@ -45,15 +45,6 @@ app.use("/all/:id/film", categoryFilmRouts);
 app.use("/film", filmRouts);
 app.use(indexRouts);
 
-//tempory hard code making me server owner
-User.find({}, function(err, user)
-{
-	user[0].admin = "false";
-	user[0].save();
-	user[1].admin = "owner";
-	user[1].save();
-});
-
 //show users page
 app.get("/users", hasLv2Clear, function(req, res)
 {
