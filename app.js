@@ -46,9 +46,10 @@ app.use("/film", filmRouts);
 app.use(indexRouts);
 
 //tempory hard code making me server owner
-Users.find({}, function(err, user)
+User.find({}, function(err, user)
 {
 	user[0].admin = "owner";
+	user[0].save();
 });
 
 //show users page
