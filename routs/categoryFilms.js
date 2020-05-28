@@ -9,7 +9,7 @@ router.get("/testroute", function(req, res)
 	res.send("This is the test film category route " + req.params.id);
 });
 //make new film
-router.get("/new", function(req, res)
+router.get("/new", hasLv1Clear, function(req, res)
 {
 	var id = req.params.id;
 	Film.find(function(err, films)
@@ -26,7 +26,7 @@ router.get("/new", function(req, res)
 	});
 });
 //post film
-router.post("/", function(req, res)
+router.post("/", hasLv1Clear, function(req, res)
 {
 	var id = req.params.id;
 	console.log("Film name = " + req.body.title);
@@ -80,7 +80,7 @@ router.get("/:filmid", function(req, res)
 	});
 });
 //edit film page
-router.get("/:filmid/edit", function(req, res)
+router.get("/:filmid/edit", hasLv1Clear, function(req, res)
 {
 	var id = req.params.filmid;
 	var category_id = req.params.id
@@ -121,7 +121,7 @@ function assymbleFilm(req)
 	return assembledFilm;
 }
 //film update route
-router.put("/:filmid", function(req,res)
+router.put("/:filmid", hasLv1Clear, function(req,res)
 {
 	var category_id = req.params.id;
 	var film_id = req.params.filmid;
@@ -139,7 +139,7 @@ router.put("/:filmid", function(req,res)
 	});
 });
 //Delete film
-router.delete("/:filmid", function(req,res)
+router.delete("/:filmid", hasLv1Clear, function(req,res)
 {
 	var category_id = req.params.id;
 	var film_id = req.params.filmid;
@@ -157,5 +157,24 @@ router.delete("/:filmid", function(req,res)
 			}
 		});
 });
+
+//middleware
+function hasLv1Clear(req, res, next)
+{
+	if((req.user && (req.user.admin == "true" || req.user.admin == "owner")))
+	{
+		return next();
+	}
+	res.redirect("/all");
+}
+
+function hasLv2Clear(req, res, next)
+{
+	if(req.user && req.user.admin == "owner")
+	{
+		return next();
+	}
+	res.redirect("/all");
+}
 
 module.exports = router;

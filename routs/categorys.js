@@ -32,13 +32,13 @@ router.get("/", function(req, res)
 });
 
 //get new category page
-router.get("/new", function(req, res)
+router.get("/new", hasLv1Clear, function(req, res)
 {
 	res.render("catagories/new")
 });
 
 //post new category
-router.post("/", function(req, res)
+router.post("/", hasLv1Clear, function(req, res)
 {
 	//if featured == true then get all categorys and set set featured to false
 	var featured = (req.body.featured == "true");
@@ -105,7 +105,7 @@ router.get("/:id", function(req, res)
 });
 
 //update category
-router.put("/:id", function(req,res)
+router.put("/:id", hasLv1Clear, function(req,res)
 {
 	console.log("Featured value: " + req.body.featured);
 	//if featured == true then get all categorys and set set featured to false
@@ -165,7 +165,7 @@ router.put("/:id", function(req,res)
 });
 
 //edit catagory
-router.get("/:id/edit", function(req, res)
+router.get("/:id/edit", hasLv1Clear, function(req, res)
 {
 	var id = req.params.id;
 	Category.findById(id, function(err, foundCategory)
@@ -187,7 +187,7 @@ router.get("/:id/edit", function(req, res)
 });
 
 //Delete category
-router.delete("/:id", function(req, res)
+router.delete("/:id", hasLv1Clear, function(req, res)
 {
 	var id = req.params.id;
 	//find category by id
@@ -206,5 +206,24 @@ router.delete("/:id", function(req, res)
 		}
 	});
 });
+
+//middleware
+function hasLv1Clear(req, res, next)
+{
+	if((req.user && (req.user.admin == "true" || req.user.admin == "owner")))
+	{
+		return next();
+	}
+	res.redirect("/all");
+}
+
+function hasLv2Clear(req, res, next)
+{
+	if(req.user && req.user.admin == "owner")
+	{
+		return next();
+	}
+	res.redirect("/all");
+}
 
 module.exports = router;

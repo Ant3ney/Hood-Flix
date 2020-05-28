@@ -6,17 +6,20 @@
 	
 <div id="show-content-image-holder" class="content-img-holder">
 	<% category.films.forEach(function(film){ %>
+	<% if(currentUser && (currentUser.admin == "true" || currentUser.admin == "owner")){ %>
 	<form class="edit-btn-fix edit-delete-form" action="/all/<%= category._id %>/film/<%= film._id %>/edit">
 			<button class="btn btn-outline-success">
 				<i class="fas fa-hammer"></i>
 			</button>
-	</form>				
+	</form>	
+	<% } %>
 	<a class="hoverclass category-show-link" href="/all/<%= category._id %>/film/<%= film._id %>">
 		
 		<img src="<%= film.url %>" class="image-thumbnail img-fluid" alt="Responsive image">
 	</a>
 	
 	<% }); %>
+	<% if(currentUser && (currentUser.admin == "true" || currentUser.admin == "owner")){ %>
 	<a class="
 			  <% if(category.films.length > 0){ %>
 					adjustable-position
@@ -26,6 +29,7 @@
 			Add New
 		</p>
 	</a>
+	<% } %>
 </div>
 
 	<p id="contentTitle" class="display-4">

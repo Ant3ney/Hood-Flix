@@ -24,12 +24,12 @@ router.get("/", function(req, res)
 	});
 });
 //Standalone addnew film
-router.get("/new", function(req, res)
+router.get("/new", hasLv1Clear, function(req, res)
 {
 	res.render("film/new");
 });
 //standalone post new film
-router.post("/", function(req, res)
+router.post("/", hasLv1Clear, function(req, res)
 {
 	//assembel film object
 	//create new film with onj
@@ -90,7 +90,7 @@ router.get("/:filmid", function(req, res)
 	});
 });
 //edit film standalone
-router.get("/:filmid/edit", function(req, res)
+router.get("/:filmid/edit", hasLv1Clear, function(req, res)
 {
 	//get film filmid
 	//get film by filmid
@@ -110,7 +110,7 @@ router.get("/:filmid/edit", function(req, res)
 	});
 });
 //Standalone update film
-router.put("/:filmid", function(req, res)
+router.put("/:filmid", hasLv1Clear, function(req, res)
 {
 	//get filmid
 	//assemple film object model
@@ -131,7 +131,7 @@ router.put("/:filmid", function(req, res)
 	});
 });
 //standalone delete film
-router.delete("/:filmid", function(req, res)
+router.delete("/:filmid", hasLv1Clear, function(req, res)
 {
 	//find film filmid
 	//delete film by filmid
@@ -150,7 +150,7 @@ router.delete("/:filmid", function(req, res)
 	});
 });
 //delete film without category
-router.delete("/:filmid", function(req,res)
+router.delete("/:filmid", hasLv1Clear, function(req,res)
 {
 	var film_id = req.params.filmid;
 	console.log("In delete route");
@@ -168,5 +168,24 @@ router.delete("/:filmid", function(req,res)
 		});
 	
 });
+
+//middleware
+function hasLv1Clear(req, res, next)
+{
+	if((req.user && (req.user.admin == "true" || req.user.admin == "owner")))
+	{
+		return next();
+	}
+	res.redirect("/film");
+}
+
+function hasLv2Clear(req, res, next)
+{
+	if(req.user && req.user.admin == "owner")
+	{
+		return next();
+	}
+	res.redirect("/all");
+}
 
 module.exports = router;

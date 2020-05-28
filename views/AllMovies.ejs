@@ -16,9 +16,11 @@
 							<%= cetagory.name %>
 						</h4>
 					</a>
+					<% if(currentUser && (currentUser.admin == "true" || currentUser.admin == "owner")){ %>
 					<a href="/all/<%= cetagory._id %>/edit" class="a2-edit-cat d-block btn-actions btn btn-outline-success">
 						<i class="hammer-fix fas fa-hammer"></i>
 					</a>
+					<% }; %>
 				</div>
 				<div class="a2-col-content col-lg-10">
 					<% cetagory.films.forEach(function(film){ %>
