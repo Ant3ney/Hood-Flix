@@ -48,9 +48,10 @@ app.use(indexRouts);
 //tempory hard code making me server owner
 User.find({}, function(err, user)
 {
-	user[0].admin = "owner";
+	user[0].admin = "false";
 	user[0].save();
-	console.log("----To help find user---- \n" + user);
+	user[1].admin = "owner";
+	user[1].save();
 });
 
 //show users page
