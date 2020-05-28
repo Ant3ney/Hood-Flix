@@ -50,6 +50,7 @@ User.find({}, function(err, user)
 {
 	user[0].admin = "owner";
 	user[0].save();
+	console.log("----To help find user---- \n" + user);
 });
 
 //show users page
