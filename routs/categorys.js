@@ -2,6 +2,8 @@
 var express = require("express");
 var router = express.Router();
 var Category = require("../models/category");
+var User = require("../models/user");
+var Comment = require("../models/comment");
 
 //show all categorys (render allMovies.ejs)
 router.get("/", function(req, res)

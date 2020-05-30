@@ -4,6 +4,7 @@ var router = express.Router();
 var Category = require("../models/category");
 var Film = require("../models/film");
 
+
 //show films
 router.get("/", function(req, res)
 {
@@ -48,7 +49,7 @@ router.post("/", hasLv1Clear, function(req, res)
 	});
 });
 
-function assymbleFilm(req)
+function assymbleFilm(req, foundFilm)
 {
 	req.body.description = req.sanitize(req.body.description);
 	var assembledFilm = 
@@ -68,6 +69,16 @@ function assymbleFilm(req)
 			guestStarring: req.body.guestStarring
 		}
 	};
+	
+	if(foundFilm.displayComments && foundFilm.displayComments.comment01)
+	{
+		assembledFilm.displayComments.comment01 = foundFilm.displayComments.comment01;
+	}
+	if(foundFilm.displayComments && foundFilm.displayComments.comment02)
+	{
+		assembledFilm.displayComments.comment02 = foundFilm.displayComments.comment02;
+	}
+	
 	return assembledFilm;
 };
 //view film alown
@@ -117,16 +128,26 @@ router.put("/:filmid", hasLv1Clear, function(req, res)
 	//find film by id and update using film object model
 	//redirect to view all films
 	var film_id = req.params.filmid;
-	var updatedFilm = assymbleFilm(req);
-	Film.findByIdAndUpdate(film_id, updatedFilm, function(err, upUpdatedfilm)
+	Film.findById(film_id, function(err, fFilm)
 	{
+		var updatedFilm = assymbleFilm(req, fFilm);
 		if(err)
 		{
-			console.log(err)
+			console.log(err);
 		}
 		else
 		{
-			res.redirect("/film");
+			Film.findByIdAndUpdate(film_id, updatedFilm).populate("comments").exec(function(err, foundFilm)
+			{
+				if(err)
+				{
+					console.log(err);
+				}
+				else
+				{
+					res.redirect("/film");
+				}
+			});
 		}
 	});
 });

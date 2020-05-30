@@ -1,0 +1,21 @@
+<!-- new comment form -->
+<%- include("../../partials/header") -%>
+<div class="container">
+	<h1>
+		Add new comment
+	</h1>
+	<form id="category-form" action="/film/<%= film._id %>/comments" method="POST">
+		<textarea form="category-form" name="comment" placeholder="comment" cols="50"></textarea> 
+		<% if(currentUser){ %>
+		<button>
+			Submit
+		</button>
+		<% } else{ %>
+		<p>
+			You must be logged in to post a comment
+		</p>
+		<% } %>
+		
+	</form>
+</div>
+<%- include("../../partials/footer") -%>

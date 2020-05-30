@@ -16,6 +16,18 @@ var filmSchema = new mongoose.Schema(
 		casting: String,
 		staring: String,
 		guestStarring: String
+	},
+	comments: 
+	[
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Comment"
+		}
+	],
+	displayComment:
+	{
+		comment01: String,
+		comment02: String
 	}
 });
 

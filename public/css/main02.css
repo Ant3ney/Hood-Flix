@@ -437,3 +437,18 @@ font-family: 'Muli', sans-serif;
 {
 	top: -5.6rem;
 }
+.cat-show-comment-btn
+{
+	font-size: 0.75rem;
+}
+.Comments-index-ul
+{
+	list-style-type: none;
+	padding: 0;
+}
+.Comments-index-ul li
+{
+	display: block;
+	text-align: left;
+	margin-bottom: 1rem;
+}

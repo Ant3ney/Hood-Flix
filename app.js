@@ -7,6 +7,8 @@ var expressSanitizer = require("express-sanitizer");
 var passport = require("passport");
 var localStrategy = require("passport-local");
 var User = require("./models/user");
+var Film = require("./models/film");
+var Comment = require("./models/comment");
 
 mongoose.connect(process.env.DATABASEURL , {useNewUrlParser: true});
 
@@ -45,26 +47,22 @@ app.use("/all/:id/film", categoryFilmRouts);
 app.use("/film", filmRouts);
 app.use(indexRouts);
 
-//show users page
-app.get("/users", hasLv2Clear, function(req, res)
+//show comments on film
+app.get("/film/:filmid/comments", function(req, res)
 {
-	User.find({}, function(err, user)
+	var id = req.params.filmid;
+	Film.findById(id).populate("comments").exec(function(err, film)
 	{
-		if(err)
-		{
-			console.log(user);
-		}
-		else
-		{
-			res.render("users/users", {users: user});
-		}
+		console.log("Film.comments: " + film);
+		res.render("film/comment/comments", {film: film});
 	});
 });
-//make Admin routs
-app.post("/users/:id/makeAdmin", hasLv2Clear, function(req, res)
+
+//show new comment form
+app.get("/film/:filmid/comments/new", function(req, res)
 {
-	var id = req.params.id;
-	User.findById(id, function(err, user)
+	var film_id = req.params.filmid;
+	Film.findById(film_id, function(err, film)
 	{
 		if(err)
 		{
@@ -72,90 +70,56 @@ app.post("/users/:id/makeAdmin", hasLv2Clear, function(req, res)
 		}
 		else
 		{
-			if(user.admin == "true")
-			{
-				user.admin = "false";
-			}
-			else
-			{
-				user.admin = "true";
-			}
-			user.save();
-			res.redirect("/users");
+			res.render("film/comment/new", {film: film});
 		}
 	});
 });
 
-//Authentication Route
-//show register form
-app.get("/register", function(req, res)
+//post mew comment
+app.post("/film/:filmid/comments", function(req, res)
 {
-	res.render("register");
-});
-//handle sign up logic
-app.post("/register", function(req, res)
-{
-	//constructing new user object
-	var newUser = new User({username: req.body.username, admin: "false"}); 
-	
-	User.register(newUser, req.body.password, function(err, user)
+	//create comment obj
+	var comment = 
+	{
+		id: req.user,//might not work. check udemy video to clarify or if problems start
+		username: req.user.username,
+		comment: req.body.comment
+	}
+	//get filmid
+	var film_id = req.params.filmid;
+	Film.findById(film_id).populate("comments").exec(function(err, film)
 	{
 		if(err)
 		{
 			console.log(err);
-			return res.render("register");
 		}
 		else
 		{
-			console.log("createdUser: " + user);
-			passport.authenticate("local")(req, res, function()
+			//create comment model obj
+			Comment.create(comment, function(err, newComment)
 			{
-				res.redirect("/all");
+				console.log("newComment: " + newComment);
+				//add new comment to film comments aray
+				film.comments.push(newComment);
+				
+				//add display comments
+				if(film.comments[0])
+				{
+					film.displayComment.comment01 = film.comments[0];
+				}
+				if(film.comments[1])
+				{
+					film.displayComment.comment02 = film.comments[1];
+				}
+				
+				film.save();
+				
+				console.log("---------Film after comments: \n" + film);
+				res.redirect("/film/" + film_id + "/comments");
 			});
 		}
 	});
 });
-//show login form
-app.get("/login", function(req, res)
-{
-	res.render("login");
-});
-//handling login logic
-app.post("/login", passport.authenticate("local", 
-{
-	successRedirect: "/all", 
-	falureRedirect:	"/login"
-	
-}), function(req, res)
-{
-	res.send("Login logic page");
-});
-
-//logout route
-app.get("/logout", isLoggedIn, function(req, res)
-{
-	console.log("NEWS: --- Loged-in ---");
-	req.logout();
-	res.redirect("/all");
-});
-
-//middleware
-function isLoggedIn(req, res, next)
-{
-	if(req.isAuthenticated())
-	{
-		return next();
-	}
-	res.redirect("/login");
-}
-function hasLv2Clear(req, res, next)
-{
-	if(req.user && req.user.admin == "owner")
-	{
-		return next();
-	}
-	res.redirect("/all");
-}
 
 app.listen((process.env.PORT || 3000), process.env.IP, function()
 {

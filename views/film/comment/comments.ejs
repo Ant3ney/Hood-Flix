@@ -1,0 +1,17 @@
+<%- include("../../partials/header") -%>
+<div class="container">
+	<h3>
+		Film Comments
+	</h3>
+	<ul class="Comments-index-ul">
+		<% film.comments.forEach(function(comment){ %>
+		<li>
+			<strong><%= comment.username %></strong>: <%= comment.comment %>
+		</li>
+		<% }); %>
+	</ul>
+	<a href="/film/<%= film.id %>/comments/new" class="cat-show-comment-btn btn-actions btn btn-outline-success mb-2 mr-2">
+		Add new comment
+	</a>
+</div>
+<%- include("../../partials/footer") -%>

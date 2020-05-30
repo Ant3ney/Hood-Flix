@@ -59,15 +59,12 @@
 			</p>
 		</div>
 		<div class="col-sm-3">
-			<p>
+			<p id="comment01-id">
 				Comments
 			</p>
-			<p>
-				<strong>Angel-Man</strong>: Hey look, thats me!
-			</p>
-			<p>
-				<strong>Alex</strong>: We already know jackAss!
-			</p>
+			<a id="seelink-comments" href="#" class="cat-show-comment-btn btn-actions btn btn-outline-success mb-2 mr-2">
+				Select video first
+			</a>
 		</div>
 	</div>
 	<a class="normalize-atag" href="/all/<%= feature._id %>">
@@ -83,7 +80,6 @@
 			</button>
 	</form>				
 	<a class="category-show-link" href="/all/<%= feature._id %>/film/<%= film._id %>">
-		
 		<img src="<%= film.url %>" class="image-thumbnail img-fluid" alt="Responsive image">
 	</a>
 	
@@ -102,6 +98,8 @@
 	var localDescription = document.getElementById("contentDescription");
 	var localCinematographer = document.getElementById("localCinematography");
 	var localEditor = document.getElementById("localEditor");
+	var localCommentSeeAll = document.getElementById("seelink-comments");
+	var localComment01 = document.getElementById("comment01-id");
 	<% category.films.forEach(function(film, i){ %>
 		total++;
 		var iOffset = (<%= i %> + 1);
@@ -114,6 +112,7 @@
 			var filmDescription = <%- JSON.stringify({film: FilmDes}) -%>; 
 			var filmCinematographer = "<%= film.credits.cinematography %>";
 			var filmEditor = "<%= film.credits.editor %>";
+			var commentSeeAll = "/film/<%= film._id %>/comments"; 
 			//var filmCinematographyr = info02.director;
 			//alert(filmTitle);
 			localTitle.innerHTML = filmTitle;
@@ -121,6 +120,8 @@
 			localDescription.innerHTML = filmDescription.film;
 			localCinematographer.innerHTML = "Cinematographer: " + filmCinematographer;
 			localEditor.innerHTML = "Editor: " + filmEditor;
+			localCommentSeeAll.innerHTML = "See all"
+			localCommentSeeAll.href = commentSeeAll;
 		});
 	<% }); %>
 </script>
