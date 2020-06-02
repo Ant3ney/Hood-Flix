@@ -59,8 +59,17 @@
 			</p>
 		</div>
 		<div class="col-sm-3">
-			<p id="comment01-id">
+			<p>
 				Comments
+			</p>
+			<p id="comment01-id">
+				
+			</p>
+			<p id="comment02-id">
+				
+			</p>
+			<p id="comment03-id">
+				
 			</p>
 			<a id="seelink-comments" href="#" class="cat-show-comment-btn btn-actions btn btn-outline-success mb-2 mr-2">
 				Select video first
@@ -100,6 +109,8 @@
 	var localEditor = document.getElementById("localEditor");
 	var localCommentSeeAll = document.getElementById("seelink-comments");
 	var localComment01 = document.getElementById("comment01-id");
+	var localComment02 = document.getElementById("comment02-id");
+	var localComment03 = document.getElementById("comment03-id");
 	<% category.films.forEach(function(film, i){ %>
 		total++;
 		var iOffset = (<%= i %> + 1);
@@ -122,6 +133,30 @@
 			localEditor.innerHTML = "Editor: " + filmEditor;
 			localCommentSeeAll.innerHTML = "See all"
 			localCommentSeeAll.href = commentSeeAll;
+			//handle dynamic comments
+			<% if(commentInfo.comment){ %>
+				//Get valid string value for comments
+				var commentStringForm00 = <%- JSON.stringify( {commentString: commentInfo.comment[i][0]} ) -%>;
+				var commentStringForm01 = <%- JSON.stringify( {commentString: commentInfo.comment[i][1]} ) -%>;
+				var FullCommentString00 = "<h6 class=\"d-inline\"><%= commentInfo.username[i][0] %></h5>: " + commentStringForm00.commentString;
+				<% if(commentInfo.comment[i].length > 1) { %>
+					localComment01.innerHTML = FullCommentString00;
+					localComment02.innerHTML = commentStringForm01.commentString;
+					localComment03.innerHTML = "...";
+				<% }else if(commentInfo.comment[i].length > 0) { %> //if the number of comments in film i is grater than 0
+					localComment01.innerHTML = FullCommentString00;
+					localComment02.innerHTML = "...";
+					localComment03.innerHTML = "";
+				<% }else{ %>
+					localComment01.innerHTML = "...";
+					localComment02.innerHTML = "";
+					localComment03.innerHTML = "";
+				<% } %>
+			<% } else { %>
+				localComment01.innerHTML = "...";
+				localComment02.innerHTML = "";
+				localComment03.innerHTML = "";
+			<% } %>
 		});
 	<% }); %>
 </script>

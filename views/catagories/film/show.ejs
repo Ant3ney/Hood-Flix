@@ -42,11 +42,33 @@
 				Comments
 			</p>
 			<p>
-				<strong>Angel-Man</strong>: Hey look thats me!
+				<% if(film.comments.length > 0){ %>
+					<h6 class="d-inline">Author</h6>: 
+					<%= film.comments[0].comment %>
+				<% }else{ %>
+					...
+				<% } %>
 			</p>
 			<p>
-				<strong>Alex</strong>: We already know jackAss!
+				<% if(film.comments.length > 1){ %>
+					<h6 class="d-inline">Author</h6>: 
+					<%= film.comments[1].comment %>
+				<% } else if(film.comments.length == 1){ %>
+					...
+				<% } else{ %>
+					
+				<% } %>
 			</p>
+			<p>
+				<% if(film.comments.length > 1){ %> 
+					...
+				<% } else{ %>
+					
+				<% } %>
+			</p>
+			<a id="seelink-comments" href="/film/<%= film._id %>/comments" class="cat-show-comment-btn btn-actions btn btn-outline-success mb-2 mr-2">
+				See all comments
+			</a>
 		</div>
 	</div>
 	<p class="display-4">

@@ -1,5 +1,6 @@
 //Category Model
 var mongoose = require("mongoose");
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 var categorySchema = new mongoose.Schema(
 {
 	name: String,
@@ -14,6 +15,7 @@ var categorySchema = new mongoose.Schema(
 		}
 	]
 });
+categorySchema.plugin(deepPopulate);
 
 var Category = mongoose.model("Category", categorySchema);
 module.exports = Category;

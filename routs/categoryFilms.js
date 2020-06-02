@@ -63,7 +63,7 @@ router.get("/:filmid", function(req, res)
 {
 	var id = req.params.id;
 	var filmid = req.params.filmid;
-	Film.findById(filmid, function(err, foundFilm)
+	Film.findById(filmid).populate("comments").exec(function(err, foundFilm)
 	{
 		if(err)
 		{

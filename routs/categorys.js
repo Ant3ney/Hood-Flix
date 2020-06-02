@@ -99,8 +99,43 @@ router.get("/:id", function(req, res)
 					featuredCategory = category;
 				}
 			});
-			//get featured function. In future. find out how to create a custum function that calls returns a callback.
-			res.render("catagories/show", {category: foundCategory, feature: featuredCategory});
+				
+			//Filling commentObj with comments
+			var commentObj = [];
+			var usernameObj = [];
+			//get fully populated Category
+			Category.findById(id).deepPopulate("films.comments").exec(function(err, fullCategory)
+			{
+				if(err)
+				{
+					console.log("Film Error &&&&&&&&&&&&&&&&&&&&&");
+					console.log(err);
+				}
+				else
+				{
+					//fullCategory has all the needed info
+					fullCategory.films.forEach(function(eachFilm, i)
+					{
+						commentObj.push([]);
+						usernameObj.push([]);
+						eachFilm.comments.forEach(function(eachComment, j)
+						{
+							commentObj[i][j] = eachComment.comment;
+							usernameObj[i][j] = eachComment.username;
+						});
+					});
+					
+					//create super object that holds all needed comment info
+					var commentInfo = 
+					{
+						comment: commentObj,
+						username: usernameObj
+					}
+					//console.log("commentInfo: ----------------\n" + commentInfo.comment);
+					//get featured function. In future. find out how to create a custum function that calls returns a callback.
+					res.render("catagories/show", {category: foundCategory, feature: featuredCategory, commentInfo: commentInfo});
+				}
+			});
 			});
 		}
 	});

@@ -88,7 +88,7 @@ router.get("/:filmid", function(req, res)
 	//render film show
 	//pass in film 
 	var film_id = req.params.filmid;
-	Film.findById(film_id, function(err, foundFilm)
+	Film.findById(film_id).populate("comments").exec(function(err, foundFilm)
 	{
 		if(err)
 		{
