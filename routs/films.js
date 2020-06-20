@@ -96,7 +96,22 @@ router.get("/:filmid", function(req, res)
 		}
 		else
 		{
-			res.render("film/show", {film: foundFilm});
+	Category.find({}).populate("films").exec(function(err, foundCategory)
+	{
+		var featuredCategory;
+		var foundFeatured = false;
+		foundCategory.forEach(function(category)
+		{
+			if(category.featured == "true")
+			{
+				featuredCategory = category;
+				foundFeatured = true;
+			}
+		});
+		
+		res.render("film/show", {film: foundFilm, feature: featuredCategory});
+	});
+			
 		}
 	});
 });
