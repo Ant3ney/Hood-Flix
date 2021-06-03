@@ -390,6 +390,16 @@ font-family: 'Muli', sans-serif;
 #nav-fix
 {
 	margin-top: 1rem !important;
+	max-height: 2rem;
+}
+#PongNav{
+	background: url("/images/Pongmate.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	height: 38px;
+    width: 38px;
+    display: block;
+	margin-left: 0.5rem;
 }
 .lab-fix-01
 {
@@ -451,4 +461,8 @@ font-family: 'Muli', sans-serif;
 	display: block;
 	text-align: left;
 	margin-bottom: 1rem;
+}
+.pongmate{
+	width: 100%;
+	height: 100%;
 }
