@@ -9,6 +9,7 @@ var localStrategy = require("passport-local");
 var User = require("./models/user");
 var Film = require("./models/film");
 var Comment = require("./models/comment");
+require('dotenv').config();
 
 mongoose.connect(process.env.DATABASEURL , {useNewUrlParser: true});
 
@@ -123,7 +124,7 @@ app.post("/film/:filmid/comments", function(req, res)
 
 app.listen((process.env.PORT || 3000), process.env.IP, function()
 {
-	console.log("server has started");
+	console.log(`server has started on port: ${process.env.PORT}`);
 });
 
 //comment for updating git hub
