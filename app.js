@@ -43,9 +43,11 @@ var categoryRouts = require("./routs/categorys.js");
 var categoryFilmRouts = require("./routs/categoryFilms.js");
 var filmRouts = require("./routs/films.js");
 var indexRouts = require("./routs/index.js");
+let apiIndex = require('./routs/api/index.js');
 app.use("/all", categoryRouts);
 app.use("/all/:id/film", categoryFilmRouts);
 app.use("/film", filmRouts);
+app.use('/api', apiIndex);
 app.use(indexRouts);
 
 //show comments on film
