@@ -70,11 +70,11 @@ function assymbleFilm(req, foundFilm)
 		}
 	};
 	
-	if(foundFilm.displayComments && foundFilm.displayComments.comment01)
+	if(foundFilm && foundFilm.displayComments && foundFilm.displayComments.comment01)
 	{
 		assembledFilm.displayComments.comment01 = foundFilm.displayComments.comment01;
 	}
-	if(foundFilm.displayComments && foundFilm.displayComments.comment02)
+	if(foundFilm && foundFilm.displayComments && foundFilm.displayComments.comment02)
 	{
 		assembledFilm.displayComments.comment02 = foundFilm.displayComments.comment02;
 	}
