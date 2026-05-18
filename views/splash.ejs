@@ -1,0 +1,66 @@
+<%- include("partials/header") -%>
+<%
+	var heroImage = featuredCategory && featuredCategory.featureUrl ? featuredCategory.featureUrl : "/images/Pongmate.png";
+	var heroTitle = featuredCategory && featuredCategory.name ? featuredCategory.name : "Hoodflix";
+	var heroDescription = featuredCategory && featuredCategory.description ? featuredCategory.description : "A private screening room built for curated films, original drops, and a sharper way to watch.";
+%>
+
+<main class="premium-splash">
+	<section class="splash-hero" style="background-image: linear-gradient(90deg, rgba(3, 5, 12, .96) 0%, rgba(3, 5, 12, .72) 42%, rgba(3, 5, 12, .18) 100%), url('<%= heroImage %>');">
+		<div class="splash-copy">
+			<div class="premium-kicker">Hoodflix Premiere Access</div>
+			<h1>Streaming with a private cinema finish.</h1>
+			<p><%= heroDescription %></p>
+			<div class="splash-actions">
+				<a href="/all" class="premium-btn premium-btn-primary">
+					<i class="fas fa-play"></i>
+					Enter Hoodflix
+				</a>
+				<% if(!currentUser) { %>
+					<a href="/register" class="premium-btn premium-btn-secondary">Start Membership</a>
+				<% } %>
+			</div>
+		</div>
+
+		<div class="splash-showcase" aria-hidden="true">
+			<% if(heroFilms && heroFilms.length){ %>
+				<% heroFilms.slice(0, 8).forEach(function(film, index){ %>
+					<img src="<%= film.url %>" class="splash-poster splash-poster-<%= index + 1 %>" alt="">
+				<% }); %>
+			<% } else { %>
+				<img src="/images/Pongmate.png" class="splash-poster splash-poster-logo" alt="">
+			<% } %>
+		</div>
+	</section>
+
+	<section class="premium-proof">
+		<div>
+			<span>4K</span>
+			<p>Feature presentation look</p>
+		</div>
+		<div>
+			<span>Curated</span>
+			<p>Hand-built collections</p>
+		</div>
+		<div>
+			<span>Ad-Free</span>
+			<p>Clean, uninterrupted browsing</p>
+		</div>
+	</section>
+
+	<section class="splash-marquee">
+		<div class="marquee-copy">
+			<h2><%= heroTitle %></h2>
+			<p>Premium rows, sharp artwork, faster discovery, and a first screen that feels like the main event.</p>
+		</div>
+		<div class="marquee-strip">
+			<% if(heroFilms && heroFilms.length){ %>
+				<% heroFilms.forEach(function(film){ %>
+					<img src="<%= film.url %>" alt="<%= film.title %>">
+				<% }); %>
+			<% } %>
+		</div>
+	</section>
+</main>
+
+<%- include("partials/footer") -%>

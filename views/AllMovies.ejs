@@ -1,16 +1,24 @@
 <%- include("partials/header") -%>
-<% if(featuredCategory){ %>
-		<a href="/all/<%= featuredCategory._id %>" class="flyerbody">
-			<img src="<%= featuredCategory.featureUrl %>">
-		</a>
-		<h3 class="mb-2 flayer-caption">
-			<%= featuredCategory.name %>
-		</h3>
-<% } %>
-		<div class="content-holder">
+<main class="premium-browse">
+	<% if(featuredCategory){ %>
+		<section class="browse-hero" style="background-image: linear-gradient(90deg, rgba(3, 5, 12, .96) 0%, rgba(3, 5, 12, .74) 44%, rgba(3, 5, 12, .08) 100%), url('<%= featuredCategory.featureUrl %>');">
+			<div class="browse-hero-copy">
+				<div class="premium-kicker">Featured Collection</div>
+				<h1><%= featuredCategory.name %></h1>
+				<% if(featuredCategory.description){ %>
+					<p><%= featuredCategory.description %></p>
+				<% } %>
+				<a href="/all/<%= featuredCategory._id %>" class="premium-btn premium-btn-primary">
+					<i class="fas fa-play"></i>
+					Watch Collection
+				</a>
+			</div>
+		</section>
+	<% } %>
+		<div class="content-holder premium-rails">
 			<% categorys.forEach(function(cetagory){%>
 			<div class="a2-row row mt-3 mb-4 mx-0">
-				<div class="col-lg-2 d-flex mb-2">
+				<div class="col-lg-2 d-flex mb-2 premium-rail-title">
 					<a class="ml-1 my-auto normalize-atag mr-2" href="/all/<%= cetagory._id %>">
 						<h4 class="a2-cat-name d-inline a2-catname-h4">
 							<%= cetagory.name %>
@@ -24,7 +32,10 @@
 				</div>
 				<div class="a2-col-content col-lg-10">
 					<% cetagory.films.forEach(function(film){ %>
-					<a href="all/<%= cetagory._id %>/film/<%= film._id %>"><img src="<%= film.url %>" class="a2-film-ele image-thumbnail img-fluid mw-50" alt="Responsive image"></a>
+					<a class="premium-poster-link" href="all/<%= cetagory._id %>/film/<%= film._id %>">
+						<img src="<%= film.url %>" class="a2-film-ele image-thumbnail img-fluid mw-50" alt="<%= film.title %>">
+						<span><%= film.title %></span>
+					</a>
 					<% }); %>
 				</div>
 			</div>
@@ -38,4 +49,5 @@
 			
 			
 		</div>
+</main>
 <%- include("partials/footer") -%>

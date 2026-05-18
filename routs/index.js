@@ -9,7 +9,42 @@ var localStrategy = require("passport-local");
 
 router.get("/", function(req, res)
 {
-	res.redirect("/all");
+	Category.find({}).populate("films").exec(function(err, foundCategory)
+	{
+		if(err)
+		{
+			console.log(err);
+			return res.redirect("/all");
+		}
+
+		var featuredCategory;
+		var heroFilms = [];
+
+		foundCategory.forEach(function(category)
+		{
+			if(category.featured == "true")
+			{
+				featuredCategory = category;
+			}
+
+			if(category.films)
+			{
+				category.films.forEach(function(film)
+				{
+					if(film && film.url && heroFilms.length < 12)
+					{
+						heroFilms.push(film);
+					}
+				});
+			}
+		});
+
+		res.render("splash", {
+			categorys: foundCategory,
+			featuredCategory: featuredCategory,
+			heroFilms: heroFilms
+		});
+	});
 });
 
 //show users page
